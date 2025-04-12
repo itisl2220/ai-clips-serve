@@ -84,6 +84,9 @@ impl ApiServer {
         // 创建应用
         let app = Router::new()
             .nest("/api", api_routes)
+            // 静态文件服务 - 直接提供根目录
+            .nest_service("/", static_service.clone())
+            // 静态文件服务 - 保留 /static 路径以兼容旧代码
             .nest_service("/static", static_service)
             .layer(TraceLayer::new_for_http())
             .layer(cors);

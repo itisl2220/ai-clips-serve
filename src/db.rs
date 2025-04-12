@@ -1,5 +1,4 @@
 use sqlx::{postgres::PgPoolOptions, PgPool};
-use std::env;
 
 /// 数据库配置
 #[derive(Debug, Clone)]

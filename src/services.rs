@@ -1,14 +1,12 @@
 use std::{
-    collections::HashMap,
     fs::{self, File},
     io::Write,
     path::{Path, PathBuf},
-    sync::Arc,
 };
 
 use axum::body::StreamBody;
 use chrono::Utc;
-use sqlx::{PgPool, postgres::PgRow};
+use sqlx::PgPool;
 use tokio::fs::File as TokioFile;
 use tokio_util::io::ReaderStream;
 
@@ -133,13 +131,9 @@ impl ClipService {
         Ok(())
     }
 
-    /// 上传素材文件
-    pub async fn upload_file(&self, clip_id: &str, file_name: &str, data: Vec<u8>) -> Result<String> {
-        println!("开始上传文件: clip_id={}, file_name={}, 文件大小={}字节", clip_id, file_name, data.len());
-        
-        // 检查剪辑任务是否存在
-        self.get_clip(clip_id).await?;
-        println!("剪辑任务存在，继续上传");
+    /// 直接上传文件（不需要剪辑ID）
+    pub async fn upload_file_direct(&self, file_name: &str, data: Vec<u8>) -> Result<String> {
+        println!("直接上传文件: file_name={}, 文件大小={}字节", file_name, data.len());
         
         // 获取数据目录
         let data_dir = self.base_dir.join("data");
@@ -174,7 +168,7 @@ impl ClipService {
                 ApiError::FileOperationFailed(format!("写入文件失败 {}: {}", file_path.display(), e))
             })?;
         
-        println!("文件上传成功: clip_id={}, file_name={}", clip_id, file_name);
+        println!("文件上传成功: file_name={}", file_name);
         
         // 生成文件访问链接
         let file_url = format!("/api/download/{}", file_name);
@@ -287,36 +281,6 @@ impl ClipService {
         println!("文件流创建成功");
         Ok(body)
     }
-
-    /// 处理剪辑任务（模拟AI处理过程）
-    pub async fn process_clip(&self, clip_id: &str) -> Result<()> {
-        // 获取剪辑任务并检查是否存在
-        let _clip = self.get_clip(clip_id).await?;
-        
-        // 更新状态为处理中
-        self.update_clip_status(clip_id, ClipStatus::Processing).await?;
-        
-        // 模拟AI处理过程（实际项目中这里会调用AI处理逻辑）
-        tokio::time::sleep(tokio::time::Duration::from_secs(5)).await;
-        
-        // 创建一个示例结果文件
-        let output_dir = self.get_clip_dir(clip_id).join("output");
-        let result_file_name = format!("result_{}.mp4", clip_id);
-        let result_file_path = output_dir.join(&result_file_name);
-        
-        // 写入示例内容（实际项目中这里会保存AI处理结果）
-        let mut file = File::create(result_file_path)?;
-        file.write_all(b"This is a sample result file")?;
-        
-        // 添加结果文件到剪辑任务
-        self.add_result_file(clip_id, &result_file_name).await?;
-        
-        // 更新状态为已完成
-        self.update_clip_status(clip_id, ClipStatus::Completed).await?;
-        
-        Ok(())
-    }
-
     /// 获取剪辑任务目录
     fn get_clip_dir(&self, clip_id: &str) -> PathBuf {
         self.base_dir.join(clip_id)

@@ -40,58 +40,6 @@
             </div>
         </div>
         
-        <!-- 上传结果文件 -->
-        <div class="card mb-4">
-            <div class="card-header">
-                <h5 class="mb-0">上传结果文件</h5>
-            </div>
-            <div class="card-body">
-                <form id="uploadForm">
-                    <div class="mb-3">
-                        <label for="clipId" class="form-label">任务ID</label>
-                        <select class="form-select" id="clipId" required>
-                            <option value="">请选择任务</option>
-                            <!-- 选项将通过JavaScript动态加载 -->
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="resultFile" class="form-label">结果文件</label>
-                        <input type="file" class="form-control" id="resultFile" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">上传</button>
-                </form>
-            </div>
-        </div>
-        
-        <!-- 修改任务状态 -->
-        <div class="card">
-            <div class="card-header">
-                <h5 class="mb-0">修改任务状态</h5>
-            </div>
-            <div class="card-body">
-                <form id="updateStatusForm">
-                    <div class="mb-3">
-                        <label for="statusClipId" class="form-label">任务ID</label>
-                        <select class="form-select" id="statusClipId" required>
-                            <option value="">请选择任务</option>
-                            <!-- 选项将通过JavaScript动态加载 -->
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="newStatus" class="form-label">新状态</label>
-                        <select class="form-select" id="newStatus" required>
-                            <option value="">请选择状态</option>
-                            <option value="pending">等待处理</option>
-                            <option value="processing">处理中</option>
-                            <option value="completed">已完成</option>
-                            <option value="failed">处理失败</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">更新</button>
-                </form>
-            </div>
-        </div>
-        
         <!-- 任务详情模态框 -->
         <div class="modal fade" id="clipDetailModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -114,6 +62,73 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 上传结果文件模态框 -->
+        <div class="modal fade" id="uploadResultModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">上传结果文件</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="uploadResultForm">
+                            <input type="hidden" id="uploadClipId">
+                            <div class="mb-3">
+                                <label for="resultFiles" class="form-label">选择结果文件（可多选）</label>
+                                <input type="file" class="form-control" id="resultFiles" multiple required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">任务状态</label>
+                                <select class="form-select" id="uploadStatus">
+                                    <option value="">保持当前状态</option>
+                                    <option value="pending">等待处理</option>
+                                    <option value="processing">处理中</option>
+                                    <option value="completed">已完成</option>
+                                    <option value="failed">处理失败</option>
+                                </select>
+                                <div class="form-text">可选择在上传后同时更新任务状态</div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" id="submitUpload">上传</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 修改状态模态框 -->
+        <div class="modal fade" id="updateStatusModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">修改任务状态</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="updateStatusForm">
+                            <input type="hidden" id="statusClipId">
+                            <div class="mb-3">
+                                <label for="newStatus" class="form-label">新状态</label>
+                                <select class="form-select" id="newStatus" required>
+                                    <option value="">请选择状态</option>
+                                    <option value="pending">等待处理</option>
+                                    <option value="processing">处理中</option>
+                                    <option value="completed">已完成</option>
+                                    <option value="failed">处理失败</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" id="submitStatus">更新</button>
                     </div>
                 </div>
             </div>
