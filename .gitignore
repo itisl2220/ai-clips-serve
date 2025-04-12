@@ -1,16 +1,3 @@
 # Logs
 target/
 data/
-target/.rustc_info.json
-target/debug/ai_clips_serve.pdb
-target/debug/ai-clips-serve.exe
-target/debug/.fingerprint/ai-clips-serve-352e4918bcc4d34d/dep-bin-ai-clips-serve
-target/debug/.fingerprint/ai-clips-serve-352e4918bcc4d34d/output-bin-ai-clips-serve
-target/debug/.fingerprint/ai-clips-serve-84ce724a1f550ae9/dep-test-bin-ai-clips-serve
-target/debug/.fingerprint/ai-clips-serve-84ce724a1f550ae9/output-test-bin-ai-clips-serve
-target/debug/.fingerprint/ai-clips-serve-84ce724a1f550ae9/test-bin-ai-clips-serve
-target/debug/.fingerprint/ai-clips-serve-8c74d17057ab19f6/bin-ai-clips-serve
-target/debug/.fingerprint/ai-clips-serve-8c74d17057ab19f6/dep-bin-ai-clips-serve
-target/debug/.fingerprint/ai-clips-serve-8c74d17057ab19f6/output-bin-ai-clips-serve
-target/debug/deps/ai_clips_serve.exe
-target/debug/deps/ai_clips_serve.pdb

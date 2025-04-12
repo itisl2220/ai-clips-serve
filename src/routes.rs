@@ -26,6 +26,7 @@ pub fn create_router(clip_service: Arc<ClipService>) -> Router {
         .route("/clips/:clip_id/status", put(update_clip_status))
         .route("/clips/:clip_id", get(get_clip))
         .route("/clips/:clip_id/material", post(update_material_file))
+        .route("/clips/:clip_id/result", post(add_result_file))
         .route("/download/:clip_id/file", get(download_file))
         .route("/download/file", get(download_file_direct))
         .route("/download/:file_name", get(download_file_by_name))
@@ -179,6 +180,14 @@ async fn update_clip_status(
         _ => return Err(ApiError::InvalidRequest(format!("无效的状态值: {}", request.status))),
     };
     
+    // 如果要将状态设置为已完成，需要验证任务是否有结果文件
+    if status == ClipStatus::Completed {
+        let clip = clip_service.get_clip(&clip_id).await?;
+        if clip.result_files.is_empty() {
+            return Err(ApiError::InvalidRequest("没有结果文件的任务不能标记为已完成".to_string()));
+        }
+    }
+    
     clip_service.update_clip_status(&clip_id, status).await?;
     Ok(Json(ApiResponse::success("状态更新成功")))
 }
@@ -284,6 +293,36 @@ async fn update_material_file(
         serde_json::json!({
             "clip_id": clip_id,
             "material_file": request.material_file
+        })
+    )))
+}
+
+/// 添加结果文件请求
+#[derive(Debug, Deserialize)]
+pub struct AddResultFileRequest {
+    pub file_name: String,
+}
+
+/// 添加结果文件到任务
+async fn add_result_file(
+    Extension(clip_service): Extension<Arc<ClipService>>,
+    Path(clip_id): Path<String>,
+    Json(request): Json<AddResultFileRequest>,
+) -> Result<impl IntoResponse> {
+    println!("添加结果文件: clip_id={}, file_name={}", clip_id, request.file_name);
+    
+    // 验证剪辑任务是否存在
+    let _clip = clip_service.get_clip(&clip_id).await?;
+    
+    // 添加结果文件
+    clip_service.add_result_file(&clip_id, &request.file_name).await?;
+    
+    // 返回成功响应
+    Ok(Json(ApiResponse::success_with_data(
+        "结果文件添加成功",
+        serde_json::json!({
+            "clip_id": clip_id,
+            "file_name": request.file_name
         })
     )))
 }
