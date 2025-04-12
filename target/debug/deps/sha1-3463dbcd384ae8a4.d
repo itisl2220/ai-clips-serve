@@ -1,0 +1,10 @@
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\libsha1-3463dbcd384ae8a4.rmeta: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\sha1-0.10.6\src\lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\sha1-0.10.6\src\compress.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\sha1-0.10.6\src\compress\soft.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\sha1-0.10.6\src\compress\x86.rs
+
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\libsha1-3463dbcd384ae8a4.rlib: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\sha1-0.10.6\src\lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\sha1-0.10.6\src\compress.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\sha1-0.10.6\src\compress\soft.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\sha1-0.10.6\src\compress\x86.rs
+
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\sha1-3463dbcd384ae8a4.d: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\sha1-0.10.6\src\lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\sha1-0.10.6\src\compress.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\sha1-0.10.6\src\compress\soft.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\sha1-0.10.6\src\compress\x86.rs
+
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\sha1-0.10.6\src\lib.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\sha1-0.10.6\src\compress.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\sha1-0.10.6\src\compress\soft.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\sha1-0.10.6\src\compress\x86.rs:

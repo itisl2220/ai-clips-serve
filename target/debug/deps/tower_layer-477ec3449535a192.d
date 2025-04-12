@@ -1,0 +1,9 @@
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\libtower_layer-477ec3449535a192.rmeta: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tower-layer-0.3.3\src/lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tower-layer-0.3.3\src\identity.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tower-layer-0.3.3\src\layer_fn.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tower-layer-0.3.3\src\stack.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tower-layer-0.3.3\src\tuple.rs
+
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\tower_layer-477ec3449535a192.d: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tower-layer-0.3.3\src/lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tower-layer-0.3.3\src\identity.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tower-layer-0.3.3\src\layer_fn.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tower-layer-0.3.3\src\stack.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tower-layer-0.3.3\src\tuple.rs
+
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tower-layer-0.3.3\src/lib.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tower-layer-0.3.3\src\identity.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tower-layer-0.3.3\src\layer_fn.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tower-layer-0.3.3\src\stack.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tower-layer-0.3.3\src\tuple.rs:

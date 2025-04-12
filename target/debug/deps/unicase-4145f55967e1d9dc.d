@@ -1,0 +1,10 @@
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\libunicase-4145f55967e1d9dc.rmeta: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\unicase-2.8.1\src/lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\unicase-2.8.1\src\ascii.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\unicase-2.8.1\src\unicode\mod.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\unicase-2.8.1\src\unicode\map.rs
+
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\libunicase-4145f55967e1d9dc.rlib: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\unicase-2.8.1\src/lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\unicase-2.8.1\src\ascii.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\unicase-2.8.1\src\unicode\mod.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\unicase-2.8.1\src\unicode\map.rs
+
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\unicase-4145f55967e1d9dc.d: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\unicase-2.8.1\src/lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\unicase-2.8.1\src\ascii.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\unicase-2.8.1\src\unicode\mod.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\unicase-2.8.1\src\unicode\map.rs
+
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\unicase-2.8.1\src/lib.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\unicase-2.8.1\src\ascii.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\unicase-2.8.1\src\unicode\mod.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\unicase-2.8.1\src\unicode\map.rs:

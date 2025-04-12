@@ -1,0 +1,1 @@
+cargo:rustc-env=MIME_TYPES_GENERATED_PATH=C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\build\mime_guess-4c129004b2df654a\out\mime_types_generated.rs

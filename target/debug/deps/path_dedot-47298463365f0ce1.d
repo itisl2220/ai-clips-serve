@@ -1,0 +1,10 @@
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\libpath_dedot-47298463365f0ce1.rmeta: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\path-dedot-3.1.1\src\lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\path-dedot-3.1.1\src\parse_dot.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\path-dedot-3.1.1\src\macros.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\path-dedot-3.1.1\src\windows.rs
+
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\libpath_dedot-47298463365f0ce1.rlib: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\path-dedot-3.1.1\src\lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\path-dedot-3.1.1\src\parse_dot.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\path-dedot-3.1.1\src\macros.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\path-dedot-3.1.1\src\windows.rs
+
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\path_dedot-47298463365f0ce1.d: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\path-dedot-3.1.1\src\lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\path-dedot-3.1.1\src\parse_dot.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\path-dedot-3.1.1\src\macros.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\path-dedot-3.1.1\src\windows.rs
+
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\path-dedot-3.1.1\src\lib.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\path-dedot-3.1.1\src\parse_dot.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\path-dedot-3.1.1\src\macros.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\path-dedot-3.1.1\src\windows.rs:

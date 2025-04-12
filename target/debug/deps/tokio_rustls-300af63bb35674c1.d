@@ -1,0 +1,9 @@
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\libtokio_rustls-300af63bb35674c1.rmeta: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tokio-rustls-0.23.4\src\lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tokio-rustls-0.23.4\src\client.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tokio-rustls-0.23.4\src\common\mod.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tokio-rustls-0.23.4\src\common\handshake.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tokio-rustls-0.23.4\src\server.rs
+
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\tokio_rustls-300af63bb35674c1.d: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tokio-rustls-0.23.4\src\lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tokio-rustls-0.23.4\src\client.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tokio-rustls-0.23.4\src\common\mod.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tokio-rustls-0.23.4\src\common\handshake.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tokio-rustls-0.23.4\src\server.rs
+
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tokio-rustls-0.23.4\src\lib.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tokio-rustls-0.23.4\src\client.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tokio-rustls-0.23.4\src\common\mod.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tokio-rustls-0.23.4\src\common\handshake.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\tokio-rustls-0.23.4\src\server.rs:

@@ -1,0 +1,9 @@
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\libsocket2-08df02798f1f8826.rmeta: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\socket2-0.5.9\src/lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\socket2-0.5.9\src\sockaddr.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\socket2-0.5.9\src\socket.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\socket2-0.5.9\src\sockref.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\socket2-0.5.9\src\sys\windows.rs
+
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\socket2-08df02798f1f8826.d: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\socket2-0.5.9\src/lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\socket2-0.5.9\src\sockaddr.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\socket2-0.5.9\src\socket.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\socket2-0.5.9\src\sockref.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\socket2-0.5.9\src\sys\windows.rs
+
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\socket2-0.5.9\src/lib.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\socket2-0.5.9\src\sockaddr.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\socket2-0.5.9\src\socket.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\socket2-0.5.9\src\sockref.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\socket2-0.5.9\src\sys\windows.rs:

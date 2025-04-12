@@ -1,0 +1,10 @@
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\libversion_check-f73a4570e934771f.rmeta: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\version_check-0.9.5\src/lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\version_check-0.9.5\src\version.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\version_check-0.9.5\src\channel.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\version_check-0.9.5\src\date.rs
+
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\libversion_check-f73a4570e934771f.rlib: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\version_check-0.9.5\src/lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\version_check-0.9.5\src\version.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\version_check-0.9.5\src\channel.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\version_check-0.9.5\src\date.rs
+
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\version_check-f73a4570e934771f.d: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\version_check-0.9.5\src/lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\version_check-0.9.5\src\version.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\version_check-0.9.5\src\channel.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\version_check-0.9.5\src\date.rs
+
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\version_check-0.9.5\src/lib.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\version_check-0.9.5\src\version.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\version_check-0.9.5\src\channel.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\version_check-0.9.5\src\date.rs:

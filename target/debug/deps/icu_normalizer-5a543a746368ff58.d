@@ -1,0 +1,9 @@
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\libicu_normalizer-5a543a746368ff58.rmeta: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\icu_normalizer-1.5.0\src\lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\icu_normalizer-1.5.0\src\error.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\icu_normalizer-1.5.0\src\properties.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\icu_normalizer-1.5.0\src\provider.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\icu_normalizer-1.5.0\src\uts46.rs
+
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\icu_normalizer-5a543a746368ff58.d: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\icu_normalizer-1.5.0\src\lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\icu_normalizer-1.5.0\src\error.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\icu_normalizer-1.5.0\src\properties.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\icu_normalizer-1.5.0\src\provider.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\icu_normalizer-1.5.0\src\uts46.rs
+
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\icu_normalizer-1.5.0\src\lib.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\icu_normalizer-1.5.0\src\error.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\icu_normalizer-1.5.0\src\properties.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\icu_normalizer-1.5.0\src\provider.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\icu_normalizer-1.5.0\src\uts46.rs:

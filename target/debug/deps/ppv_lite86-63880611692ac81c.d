@@ -1,0 +1,9 @@
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\libppv_lite86-63880611692ac81c.rmeta: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\ppv-lite86-0.2.21\src/lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\ppv-lite86-0.2.21\src\soft.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\ppv-lite86-0.2.21\src\types.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\ppv-lite86-0.2.21\src\x86_64\mod.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\ppv-lite86-0.2.21\src\x86_64\sse2.rs
+
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\ppv_lite86-63880611692ac81c.d: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\ppv-lite86-0.2.21\src/lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\ppv-lite86-0.2.21\src\soft.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\ppv-lite86-0.2.21\src\types.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\ppv-lite86-0.2.21\src\x86_64\mod.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\ppv-lite86-0.2.21\src\x86_64\sse2.rs
+
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\ppv-lite86-0.2.21\src/lib.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\ppv-lite86-0.2.21\src\soft.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\ppv-lite86-0.2.21\src\types.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\ppv-lite86-0.2.21\src\x86_64\mod.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\ppv-lite86-0.2.21\src\x86_64\sse2.rs:

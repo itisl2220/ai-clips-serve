@@ -1,0 +1,10 @@
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\liblock_api-3b8f9f2a6a9a414c.rmeta: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\lock_api-0.4.12\src\lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\lock_api-0.4.12\src\mutex.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\lock_api-0.4.12\src\remutex.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\lock_api-0.4.12\src\rwlock.rs
+
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\liblock_api-3b8f9f2a6a9a414c.rlib: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\lock_api-0.4.12\src\lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\lock_api-0.4.12\src\mutex.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\lock_api-0.4.12\src\remutex.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\lock_api-0.4.12\src\rwlock.rs
+
+C:\Users\Administrator\Desktop\ai-clips-serve\target\debug\deps\lock_api-3b8f9f2a6a9a414c.d: C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\lock_api-0.4.12\src\lib.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\lock_api-0.4.12\src\mutex.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\lock_api-0.4.12\src\remutex.rs C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\lock_api-0.4.12\src\rwlock.rs
+
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\lock_api-0.4.12\src\lib.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\lock_api-0.4.12\src\mutex.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\lock_api-0.4.12\src\remutex.rs:
+C:\Users\Administrator\.cargo\registry\src\mirrors.aliyun.com-8754fae0eb2f08f1\lock_api-0.4.12\src\rwlock.rs:
