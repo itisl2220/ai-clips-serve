@@ -28,6 +28,7 @@ pub fn create_router(clip_service: Arc<ClipService>) -> Router {
         .route("/clips/:clip_id/material", put(update_material_file))
         .route("/download/:clip_id/file", get(download_file))
         .route("/download/file", get(download_file_direct))
+        .route("/download/:file_name", get(download_file_by_name))
         .route("/health", get(health_check))
         .layer(Extension(clip_service))
 }
@@ -242,6 +243,27 @@ pub async fn download_file_direct(
     
     // 直接获取文件流，不区分素材文件和结果文件
     let body = clip_service.get_file_stream_direct(file_name).await?;
+    
+    // 构建响应头
+    let mut headers = axum::http::HeaderMap::new();
+    headers.insert(header::CONTENT_TYPE, "application/octet-stream".parse().unwrap());
+    headers.insert(
+        header::CONTENT_DISPOSITION,
+        format!("attachment; filename=\"{}\"", file_name).parse().unwrap(),
+    );
+    
+    Ok((StatusCode::OK, headers, body))
+}
+
+/// 下载文件（根据文件名）
+pub async fn download_file_by_name(
+    Extension(clip_service): Extension<Arc<ClipService>>,
+    Path(file_name): Path<String>,
+) -> Result<impl IntoResponse> {
+    println!("请求下载文件: file_name={}", file_name);
+    
+    // 直接获取文件流，不区分素材文件和结果文件
+    let body = clip_service.get_file_stream_direct(&file_name).await?;
     
     // 构建响应头
     let mut headers = axum::http::HeaderMap::new();

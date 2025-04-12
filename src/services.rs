@@ -252,6 +252,42 @@ impl ClipService {
         Ok(body)
     }
 
+    /// 直接获取文件流（不需要剪辑ID）
+    pub async fn get_file_stream_direct(
+        &self,
+        file_name: &str,
+    ) -> Result<StreamBody<ReaderStream<TokioFile>>> {
+        println!("直接获取文件流: file_name={}", file_name);
+        
+        // 获取数据目录
+        let data_dir = self.base_dir.join("data");
+        
+        // 文件路径
+        let file_path = data_dir.join(file_name);
+        
+        // 检查文件是否存在
+        if !file_path.exists() {
+            return Err(ApiError::FileNotFound(format!(
+                "文件 {} 不存在",
+                file_name
+            )));
+        }
+        
+        println!("找到文件路径: {}", file_path.display());
+        
+        // 打开文件
+        let file = TokioFile::open(file_path).await.map_err(|e| {
+            ApiError::FileOperationFailed(format!("无法打开文件: {}", e))
+        })?;
+        
+        // 创建文件流
+        let stream = ReaderStream::new(file);
+        let body = StreamBody::new(stream);
+        
+        println!("文件流创建成功");
+        Ok(body)
+    }
+
     /// 处理剪辑任务（模拟AI处理过程）
     pub async fn process_clip(&self, clip_id: &str) -> Result<()> {
         // 获取剪辑任务并检查是否存在
