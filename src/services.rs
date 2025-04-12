@@ -141,22 +141,22 @@ impl ClipService {
         self.get_clip(clip_id).await?;
         println!("剪辑任务存在，继续上传");
         
-        // 获取素材目录
-        let material_dir = self.get_clip_dir(clip_id).join("materials");
-        println!("素材目录路径: {}", material_dir.display());
+        // 获取数据目录
+        let data_dir = self.base_dir.join("data");
+        println!("数据目录路径: {}", data_dir.display());
         
-        // 确保素材目录存在
-        if !material_dir.exists() {
-            println!("素材目录不存在，正在创建: {}", material_dir.display());
-            fs::create_dir_all(&material_dir)
+        // 确保数据目录存在
+        if !data_dir.exists() {
+            println!("数据目录不存在，正在创建: {}", data_dir.display());
+            fs::create_dir_all(&data_dir)
                 .map_err(|e| {
-                    println!("创建素材目录失败: {}", e);
-                    ApiError::FileOperationFailed(format!("创建素材目录失败: {}", e))
+                    println!("创建数据目录失败: {}", e);
+                    ApiError::FileOperationFailed(format!("创建数据目录失败: {}", e))
                 })?;
-            println!("素材目录创建成功");
+            println!("数据目录创建成功");
         }
         
-        let file_path = material_dir.join(file_name);
+        let file_path = data_dir.join(file_name);
         println!("目标文件路径: {}", file_path.display());
         
         // 写入文件
@@ -177,7 +177,7 @@ impl ClipService {
         println!("文件上传成功: clip_id={}, file_name={}", clip_id, file_name);
         
         // 生成文件访问链接
-        let file_url = format!("/api/download/{}/file?name={}", clip_id, file_name);
+        let file_url = format!("/api/download/{}", file_name);
         
         Ok(file_url)
     }
@@ -217,22 +217,24 @@ impl ClipService {
         // 检查剪辑任务是否存在
         let _clip = self.get_clip(clip_id).await?;
         
-        // 获取剪辑任务目录
-        let clip_dir = self.get_clip_dir(clip_id);
+        // 获取数据目录
+        let data_dir = self.base_dir.join("data");
         
         // 尝试在不同目录中查找文件
         let possible_paths = vec![
-            clip_dir.join(file_name),                  // 直接在剪辑目录下
-            clip_dir.join("materials").join(file_name), // 在素材目录下
-            clip_dir.join("output").join(file_name),    // 在输出目录下
+            data_dir.join(file_name),                  // 在数据目录下
+            self.base_dir.join(file_name),             // 在基础目录下
+            self.get_clip_dir(clip_id).join(file_name), // 在剪辑目录下（兼容旧数据）
+            self.get_clip_dir(clip_id).join("materials").join(file_name), // 在素材目录下（兼容旧数据）
+            self.get_clip_dir(clip_id).join("output").join(file_name),    // 在输出目录下（兼容旧数据）
         ];
         
         // 查找文件
         let file_path = possible_paths.iter()
             .find(|path| path.exists())
             .ok_or_else(|| ApiError::FileNotFound(format!(
-                "文件 {} 不存在于剪辑任务 {} 的任何目录中",
-                file_name, clip_id
+                "文件 {} 不存在于任何目录中",
+                file_name
             )))?;
         
         println!("找到文件路径: {}", file_path.display());

@@ -27,6 +27,7 @@ pub fn create_router(clip_service: Arc<ClipService>) -> Router {
         .route("/clips/:clip_id", get(get_clip))
         .route("/clips/:clip_id/material", put(update_material_file))
         .route("/download/:clip_id/file", get(download_file))
+        .route("/download/file", get(download_file_direct))
         .route("/health", get(health_check))
         .layer(Extension(clip_service))
 }
@@ -139,6 +140,14 @@ async fn upload_file(
     let file_url = clip_service.upload_file(&clip_id, &uuid_file_name, file_data).await?;
     println!("文件上传成功，链接: {}", file_url);
     
+    // 如果是素材包（ZIP文件），则保存链接到数据库
+    if original_file_name.to_lowercase().ends_with(".zip") {
+        println!("检测到ZIP文件，设置素材包链接");
+        // 设置素材包链接
+        clip_service.set_material_file(&clip_id, &file_url).await?;
+        println!("素材包链接已保存到数据库");
+    }
+    
     // 返回成功响应，包含文件链接
     println!("返回成功响应");
     Ok(Json(ApiResponse::success_with_data(
@@ -211,6 +220,28 @@ pub async fn download_file(
     
     // 直接获取文件流，不区分素材文件和结果文件
     let body = clip_service.get_file_stream(&clip_id, file_name).await?;
+    
+    // 构建响应头
+    let mut headers = axum::http::HeaderMap::new();
+    headers.insert(header::CONTENT_TYPE, "application/octet-stream".parse().unwrap());
+    headers.insert(
+        header::CONTENT_DISPOSITION,
+        format!("attachment; filename=\"{}\"", file_name).parse().unwrap(),
+    );
+    
+    Ok((StatusCode::OK, headers, body))
+}
+
+/// 下载文件（直接）
+pub async fn download_file_direct(
+    Extension(clip_service): Extension<Arc<ClipService>>,
+    Query(query): Query<DownloadQuery>,
+) -> Result<impl IntoResponse> {
+    let file_name = &query.name;
+    println!("请求下载文件: file_name={}", file_name);
+    
+    // 直接获取文件流，不区分素材文件和结果文件
+    let body = clip_service.get_file_stream_direct(file_name).await?;
     
     // 构建响应头
     let mut headers = axum::http::HeaderMap::new();
