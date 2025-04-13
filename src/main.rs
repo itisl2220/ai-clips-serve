@@ -32,7 +32,7 @@ async fn main() -> anyhow::Result<()> {
 
     // 创建服务器配置
     let config = ServerConfig {
-        addr: "127.0.0.1:8080".parse().unwrap(),
+        addr: "0.0.0.0:8080".parse().unwrap(),
         base_dir,
         db_config,
         static_dir: PathBuf::from("./static"),
