@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI混剪任务管理</title>
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
@@ -52,6 +53,18 @@
                         <div id="clipDetail">
                             <!-- 任务详情将通过JavaScript动态加载 -->
                         </div>
+                        <div class="mt-3">
+                            <div class="d-flex align-items-center">
+                                <h6 class="mb-0 me-2">提示词</h6>
+                                <button id="copyPromptBtn" class="btn btn-sm btn-outline-primary" data-bs-toggle="tooltip" title="复制到剪贴板">
+                                    <i class="bi bi-clipboard"></i> 复制
+                                </button>
+                                <span id="copyFeedback" class="ms-2 text-success d-none">已复制!</span>
+                            </div>
+                            <div id="promptContent" class="mt-2 p-2 bg-light rounded">
+                                <!-- 提示词内容将通过JavaScript动态加载 -->
+                            </div>
+                        </div>
                         <div class="mt-4">
                             <h6>结果文件</h6>
                             <ul id="resultFilesList" class="list-group">
@@ -92,6 +105,18 @@
                                     <option value="failed">处理失败</option>
                                 </select>
                                 <div class="form-text">可选择在上传后同时更新任务状态</div>
+                            </div>
+                            <!-- 上传进度显示 -->
+                            <div id="uploadProgressContainer" class="mb-3 d-none">
+                                <label class="form-label">上传进度</label>
+                                <div class="progress">
+                                    <div id="uploadProgressBar" class="progress-bar progress-bar-striped progress-bar-animated" 
+                                         role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                        0%
+                                    </div>
+                                </div>
+                                <div id="uploadStatusText" class="form-text mt-2">准备上传...</div>
+                                <div id="uploadDetailText" class="form-text"></div>
                             </div>
                         </form>
                     </div>

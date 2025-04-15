@@ -32,7 +32,9 @@ impl std::fmt::Display for ClipStatus {
 
 impl From<&str> for ClipStatus {
     fn from(s: &str) -> Self {
-        match s {
+        // 转换为小写并去除空白字符，提高容错性
+        let s = s.trim().to_lowercase();
+        match s.as_str() {
             "pending" => ClipStatus::Pending,
             "processing" => ClipStatus::Processing,
             "completed" => ClipStatus::Completed,

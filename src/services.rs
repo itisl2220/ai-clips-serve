@@ -1,13 +1,16 @@
 use std::{
     fs::{self, File},
-    io::Write,
+    io::{self, Write},
     path::{Path, PathBuf},
 };
 
 use axum::body::StreamBody;
 use chrono::Utc;
 use sqlx::PgPool;
-use tokio::fs::File as TokioFile;
+use tokio::{
+    fs::File as TokioFile,
+    io::{AsyncReadExt, AsyncWriteExt},
+};
 use tokio_util::io::ReaderStream;
 
 use crate::{
@@ -30,10 +33,27 @@ impl ClipService {
         // 确保基础目录存在
         fs::create_dir_all(&base_dir).expect("无法创建基础目录");
         
+        // 确保临时目录和数据目录存在
+        let temp_dir = base_dir.join("temp");
+        fs::create_dir_all(&temp_dir).expect("无法创建临时目录");
+        
+        let data_dir = base_dir.join("data");
+        fs::create_dir_all(&data_dir).expect("无法创建数据目录");
+        
         Self {
             pool,
             base_dir,
         }
+    }
+    
+    /// 获取数据目录
+    pub fn get_data_dir(&self) -> PathBuf {
+        self.base_dir.join("data")
+    }
+    
+    /// 获取临时目录
+    pub fn get_temp_dir(&self) -> PathBuf {
+        self.base_dir.join("temp")
     }
 
     /// 创建新的剪辑任务
@@ -136,7 +156,7 @@ impl ClipService {
         println!("直接上传文件: file_name={}, 文件大小={}字节", file_name, data.len());
         
         // 获取数据目录
-        let data_dir = self.base_dir.join("data");
+        let data_dir = self.get_data_dir();
         println!("数据目录路径: {}", data_dir.display());
         
         // 确保数据目录存在
@@ -169,6 +189,157 @@ impl ClipService {
             })?;
         
         println!("文件上传成功: file_name={}", file_name);
+        
+        // 生成文件访问链接
+        let file_url = format!("/api/download/{}", file_name);
+        
+        Ok(file_url)
+    }
+    
+    /// 上传文件分块
+    pub async fn upload_file_chunk(
+        &self, 
+        upload_id: &str, 
+        chunk_index: usize, 
+        total_chunks: usize, 
+        data: &[u8]
+    ) -> Result<()> {
+        println!("上传文件分块: upload_id={}, chunk_index={}/{}, 分块大小={}字节", 
+            upload_id, chunk_index, total_chunks, data.len());
+        
+        // 获取临时目录
+        let temp_dir = self.get_temp_dir();
+        
+        // 创建上传ID目录
+        let upload_dir = temp_dir.join(upload_id);
+        if !upload_dir.exists() {
+            fs::create_dir_all(&upload_dir)
+                .map_err(|e| {
+                    println!("创建上传目录失败: {}", e);
+                    ApiError::FileOperationFailed(format!("创建上传目录失败: {}", e))
+                })?;
+        }
+        
+        // 创建分块文件
+        let chunk_file_path = upload_dir.join(format!("{}", chunk_index));
+        
+        // 写入分块数据
+        let mut file = File::create(&chunk_file_path)
+            .map_err(|e| {
+                println!("创建分块文件失败: {}", e);
+                ApiError::FileOperationFailed(format!("创建分块文件失败: {}", e))
+            })?;
+        
+        file.write_all(data)
+            .map_err(|e| {
+                println!("写入分块数据失败: {}", e);
+                ApiError::FileOperationFailed(format!("写入分块数据失败: {}", e))
+            })?;
+        
+        println!("分块上传成功: upload_id={}, chunk_index={}", upload_id, chunk_index);
+        
+        Ok(())
+    }
+    
+    /// 完成分块上传
+    pub async fn complete_chunked_upload(
+        &self, 
+        upload_id: &str, 
+        file_name: &str
+    ) -> Result<String> {
+        println!("完成分块上传: upload_id={}, file_name={}", upload_id, file_name);
+        
+        // 获取临时目录和数据目录
+        let temp_dir = self.get_temp_dir();
+        let data_dir = self.get_data_dir();
+        
+        // 检查上传ID目录是否存在
+        let upload_dir = temp_dir.join(upload_id);
+        if !upload_dir.exists() {
+            return Err(ApiError::InvalidRequest(format!("上传ID不存在: {}", upload_id)));
+        }
+        
+        // 获取所有分块文件
+        let mut chunk_files = Vec::new();
+        for entry in fs::read_dir(&upload_dir)
+            .map_err(|e| ApiError::FileOperationFailed(format!("读取上传目录失败: {}", e)))? {
+            let entry = entry
+                .map_err(|e| ApiError::FileOperationFailed(format!("读取目录条目失败: {}", e)))?;
+            
+            let path = entry.path();
+            if path.is_file() {
+                // 分块文件名是数字索引
+                if let Some(file_name) = path.file_name() {
+                    if let Some(file_name_str) = file_name.to_str() {
+                        if let Ok(index) = file_name_str.parse::<usize>() {
+                            chunk_files.push((index, path));
+                        }
+                    }
+                }
+            }
+        }
+        
+        // 按索引排序分块
+        chunk_files.sort_by_key(|(index, _)| *index);
+        
+        // 创建目标文件
+        let target_file_path = data_dir.join(file_name);
+        let mut target_file = tokio::fs::File::create(&target_file_path).await
+            .map_err(|e| {
+                println!("创建目标文件失败: {}", e);
+                ApiError::FileOperationFailed(format!("创建目标文件失败: {}", e))
+            })?;
+        
+        // 合并分块
+        let mut total_bytes = 0;
+        for (index, chunk_path) in chunk_files {
+            println!("处理分块 {}: {}", index, chunk_path.display());
+            
+            // 读取分块文件
+            let mut chunk_file = tokio::fs::File::open(&chunk_path).await
+                .map_err(|e| {
+                    println!("打开分块文件失败: {}", e);
+                    ApiError::FileOperationFailed(format!("打开分块文件失败: {}", e))
+                })?;
+            
+            // 读取并写入数据
+            let mut buffer = vec![0u8; 8 * 1024 * 1024]; // 8MB 缓冲区
+            loop {
+                let bytes_read = chunk_file.read(&mut buffer).await
+                    .map_err(|e| {
+                        println!("读取分块数据失败: {}", e);
+                        ApiError::FileOperationFailed(format!("读取分块数据失败: {}", e))
+                    })?;
+                
+                if bytes_read == 0 {
+                    break;
+                }
+                
+                target_file.write_all(&buffer[0..bytes_read]).await
+                    .map_err(|e| {
+                        println!("写入目标文件失败: {}", e);
+                        ApiError::FileOperationFailed(format!("写入目标文件失败: {}", e))
+                    })?;
+                
+                total_bytes += bytes_read;
+            }
+        }
+        
+        // 确保所有数据都写入磁盘
+        target_file.flush().await
+            .map_err(|e| {
+                println!("刷新文件数据失败: {}", e);
+                ApiError::FileOperationFailed(format!("刷新文件数据失败: {}", e))
+            })?;
+        
+        println!("文件合并完成，总大小: {} 字节", total_bytes);
+        
+        // 清理临时文件
+        tokio::spawn(async move {
+            if let Err(e) = tokio::fs::remove_dir_all(upload_dir).await {
+                println!("清理临时文件失败: {}", e);
+            }
+        });
         
         // 生成文件访问链接
         let file_url = format!("/api/download/{}", file_name);

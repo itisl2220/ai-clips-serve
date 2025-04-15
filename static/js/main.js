@@ -237,6 +237,66 @@ async function viewClipDetail(id) {
                 noResultFiles.classList.remove('d-none');
             }
             
+            // 显示提示词内容
+            const promptContent = document.getElementById('promptContent');
+            if (promptContent) {
+                promptContent.textContent = clip.prompt;
+            }
+            
+            // 设置复制按钮功能
+            const copyPromptBtn = document.getElementById('copyPromptBtn');
+            const copyFeedback = document.getElementById('copyFeedback');
+            
+            if (copyPromptBtn) {
+                // 移除之前的事件监听器
+                const newCopyBtn = copyPromptBtn.cloneNode(true);
+                copyPromptBtn.parentNode.replaceChild(newCopyBtn, copyPromptBtn);
+                
+                // 添加新的事件监听器
+                newCopyBtn.addEventListener('click', () => {
+                    // 复制提示词到剪贴板
+                    navigator.clipboard.writeText(clip.prompt)
+                        .then(() => {
+                            // 显示成功反馈
+                            copyFeedback.textContent = '已复制!';
+                            copyFeedback.classList.remove('d-none');
+                            
+                            // 更改按钮样式
+                            newCopyBtn.classList.remove('btn-outline-primary');
+                            newCopyBtn.classList.add('btn-success');
+                            newCopyBtn.innerHTML = '<i class="bi bi-check"></i> 已复制';
+                            
+                            // 2秒后恢复按钮状态
+                            setTimeout(() => {
+                                copyFeedback.classList.add('d-none');
+                                newCopyBtn.classList.remove('btn-success');
+                                newCopyBtn.classList.add('btn-outline-primary');
+                                newCopyBtn.innerHTML = '<i class="bi bi-clipboard"></i> 复制';
+                            }, 2000);
+                        })
+                        .catch(err => {
+                            console.error('复制失败:', err);
+                            copyFeedback.textContent = '复制失败!';
+                            copyFeedback.classList.remove('d-none');
+                            copyFeedback.classList.remove('text-success');
+                            copyFeedback.classList.add('text-danger');
+                            
+                            // 2秒后隐藏错误信息
+                            setTimeout(() => {
+                                copyFeedback.classList.add('d-none');
+                                copyFeedback.classList.remove('text-danger');
+                                copyFeedback.classList.add('text-success');
+                            }, 2000);
+                        });
+                });
+            }
+            
+            // 初始化工具提示
+            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+            
             // 显示模态框
             clipDetailModal.show();
         } else {
@@ -266,11 +326,58 @@ async function handleUploadResult() {
     
     console.log(`准备上传 ${files.length} 个文件到任务 ${id}`);
     
+    // 获取进度显示元素
+    const progressContainer = document.getElementById('uploadProgressContainer');
+    const progressBar = document.getElementById('uploadProgressBar');
+    const statusText = document.getElementById('uploadStatusText');
+    const detailText = document.getElementById('uploadDetailText');
+    
+    // 显示进度条
+    progressContainer.classList.remove('d-none');
+    progressBar.style.width = '0%';
+    progressBar.textContent = '0%';
+    progressBar.setAttribute('aria-valuenow', 0);
+    statusText.textContent = '准备上传...';
+    detailText.textContent = '';
+    
+    // 禁用提交按钮
+    submitUpload.disabled = true;
+    
     try {
-        // 上传所有文件
-        const uploadPromises = Array.from(files).map(async (file, index) => {
-            console.log(`开始上传第 ${index + 1}/${files.length} 个文件: ${file.name}`);
+        // 计算每个文件的进度权重
+        const totalFiles = files.length;
+        const fileWeight = 90 / totalFiles; // 留出10%用于状态更新
+        let totalProgress = 0;
+        
+        // 更新进度函数
+        const updateProgress = (fileIndex, fileProgress, message) => {
+            // 计算总体进度
+            const fileBaseProgress = fileIndex * fileWeight;
+            const currentFileProgress = fileProgress * fileWeight / 100;
+            totalProgress = Math.min(90, fileBaseProgress + currentFileProgress);
             
+            // 更新进度条
+            const displayProgress = Math.round(totalProgress);
+            progressBar.style.width = `${displayProgress}%`;
+            progressBar.textContent = `${displayProgress}%`;
+            progressBar.setAttribute('aria-valuenow', displayProgress);
+            
+            // 更新状态文本
+            if (message) {
+                statusText.textContent = message;
+            }
+            
+            // 更新详细信息
+            detailText.textContent = `处理第 ${fileIndex + 1}/${totalFiles} 个文件`;
+        };
+        
+        // 上传所有文件
+        const results = [];
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            updateProgress(i, 0, `正在上传: ${file.name}`);
+            
+            // 1. 上传文件
             const formData = new FormData();
             formData.append('file', file);
             
@@ -289,13 +396,11 @@ async function handleUploadResult() {
                 throw new Error(data.error || `上传文件 ${file.name} 失败`);
             }
             
-            console.log(`文件 ${file.name} 上传成功，获取到链接: ${data.data.file_url}`);
+            updateProgress(i, 50, `文件上传成功，正在添加到任务...`);
             
-            // 添加结果文件到任务
+            // 2. 添加结果文件到任务
             const fileUrl = data.data.file_url;
             const fileName = data.data.file_name;
-            
-            console.log(`将文件 ${fileName} 添加到任务 ${id} 的结果文件列表`);
             
             const resultResponse = await fetch(`${API_BASE_URL}/clips/${id}/result`, {
                 method: 'POST',
@@ -315,17 +420,17 @@ async function handleUploadResult() {
                 throw new Error(resultData.error || `添加结果文件 ${fileName} 失败`);
             }
             
-            console.log(`文件 ${fileName} 成功添加到任务 ${id} 的结果文件列表`);
-            
-            return { fileName, fileUrl };
-        });
-        
-        const results = await Promise.all(uploadPromises);
-        console.log(`所有 ${results.length} 个文件上传并添加到任务成功`);
+            updateProgress(i, 100, `文件 ${i + 1}/${totalFiles} 处理完成`);
+            results.push({ fileName, fileUrl });
+        }
         
         // 如果选择了状态，则更新任务状态
         if (status) {
-            console.log(`更新任务 ${id} 的状态为 ${status}`);
+            statusText.textContent = `正在更新任务状态为: ${getStatusText(status)}`;
+            totalProgress = 95;
+            progressBar.style.width = `${totalProgress}%`;
+            progressBar.textContent = `${totalProgress}%`;
+            progressBar.setAttribute('aria-valuenow', totalProgress);
             
             const statusResponse = await fetch(`${API_BASE_URL}/clips/${id}/status`, {
                 method: 'PUT',
@@ -337,24 +442,52 @@ async function handleUploadResult() {
             
             if (!statusResponse.ok) {
                 console.warn(`更新任务状态失败，状态码: ${statusResponse.status}`);
+                statusText.textContent = `警告: 更新任务状态失败，但文件已上传成功`;
             } else {
                 const statusData = await statusResponse.json();
                 if (!statusData.success) {
                     console.warn(`更新任务状态失败: ${statusData.error || '未知错误'}`);
+                    statusText.textContent = `警告: 更新任务状态失败，但文件已上传成功`;
                 } else {
-                    console.log(`任务状态更新成功`);
+                    statusText.textContent = `任务状态更新成功`;
                 }
             }
         }
         
-        showSuccess(`成功上传 ${results.length} 个结果文件`);
-        uploadResultModal.hide();
+        // 完成所有操作
+        totalProgress = 100;
+        progressBar.style.width = `${totalProgress}%`;
+        progressBar.textContent = `${totalProgress}%`;
+        progressBar.setAttribute('aria-valuenow', totalProgress);
+        progressBar.classList.remove('progress-bar-animated');
+        statusText.textContent = `上传完成: 成功处理 ${results.length} 个文件`;
+        detailText.textContent = '';
         
-        // 刷新任务列表并自动打开任务详情
-        await fetchClips();
-        viewClipDetail(id);
+        // 短暂延迟后关闭模态框并刷新
+        setTimeout(() => {
+            showSuccess(`成功上传 ${results.length} 个结果文件`);
+            uploadResultModal.hide();
+            
+            // 重置进度条
+            progressContainer.classList.add('d-none');
+            submitUpload.disabled = false;
+            
+            // 刷新任务列表并自动打开任务详情
+            fetchClips().then(() => viewClipDetail(id));
+        }, 1500);
+        
     } catch (error) {
         console.error('Error:', error);
+        
+        // 更新进度条显示错误
+        progressBar.classList.remove('progress-bar-animated');
+        progressBar.classList.remove('bg-primary');
+        progressBar.classList.add('bg-danger');
+        statusText.textContent = `上传失败: ${error.message}`;
+        
+        // 启用提交按钮
+        submitUpload.disabled = false;
+        
         showError('上传失败: ' + error.message);
     }
 }
